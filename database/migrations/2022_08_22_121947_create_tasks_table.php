@@ -11,6 +11,8 @@ class CreateTasksTable extends Migration
      *
      * @return void
      */
+    
+    // マイグレーションが実行されたときに呼ばれる。
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
@@ -25,6 +27,8 @@ class CreateTasksTable extends Migration
      *
      * @return void
      */
+     
+    //イグレーションがロールバックされたときに呼ばれる。
     public function down()
     {
         Schema::dropIfExists('tasks');
