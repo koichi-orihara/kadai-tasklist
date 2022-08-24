@@ -38,6 +38,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        //ログインしていない閲覧者か否か　ログインしている場合は実行させず別のURLへ飛ばす。
+        //app/Http/Middleware/RedirectIfAuthenticated.php 参照
         $this->middleware('guest');
     }
 
