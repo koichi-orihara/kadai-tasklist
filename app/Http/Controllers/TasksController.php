@@ -18,7 +18,10 @@ class TasksController extends Controller
     public function index()
     {
         // メッセージ一覧を取得
-        $tasks = Task::all();
+        // $tasks = Task::all();
+        
+        //ログインユーザーの情報を取得
+        $tasks = Task::where('user_id', \Auth::user()->id)->get();
         
         // メッセージ一覧ビューでそれを表示
         return view('tasks.index', [

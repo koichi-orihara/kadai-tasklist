@@ -15,11 +15,12 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'TasksController@index');
+// Route::get('/', 'TasksController@index');
 
 //Route::group() でルートのグループを作り、 auth ミドルウェアを指定することで、
 //このグループ内のルートへアクセスする際に、認証を必要とするようにできる。
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'TasksController@index');
     Route::resource('tasks', 'TasksController');
 });
 
