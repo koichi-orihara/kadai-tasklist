@@ -64,7 +64,9 @@ class TasksController extends Controller
         $task = new Task;
         //送られてきたフォームの内容は $request に入っている。
         $task->content = $request->content;
-        $task->status = $request->status; 
+        $task->status = $request->status;
+        //auth()->id();と書く事で、自動的に現在ログインしているユーザーのid番号を取得できます。
+        $task->user_id = auth()->id();
         $task->save();
         
         return redirect('/');

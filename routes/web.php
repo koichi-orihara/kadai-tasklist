@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'TasksController@index');
+
+//Route::group() でルートのグループを作り、 auth ミドルウェアを指定することで、
+//このグループ内のルートへアクセスする際に、認証を必要とするようにできる。
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('tasks', 'TasksController');
 });
-
-Route::get('/tasks', 'TasksController@index');
-
-Route::resource('tasks', 'TasksController');
 
 //ユーザー登録 /signup/にgetメソッドでアクセスしたらAuth\RegisterControllerのshowRegistrationFormメソッドを呼び出す。
 //→return view('auth.register');
