@@ -17,8 +17,6 @@ class TasksController extends Controller
     // getでtasks/にアクセスされた場合の「一覧表示処理」
     public function index()
     {
-        // メッセージ一覧を取得
-        // $tasks = Task::all();
         
         //ログインユーザーの情報を取得
         $tasks = Task::where('user_id', \Auth::user()->id)->get();
@@ -90,11 +88,17 @@ class TasksController extends Controller
         
         $user_id = \Auth::user()->id;
         
-        // メッセージ詳細ビューでそれを表示
-        return view('tasks.show', [
-            'task' => $task,
-            'user_id' => $user_id,
-        ]);
+        //ログインユーザーの場合
+        if ($user_id === $task->user_id) {
+            // メッセージ詳細ビューでそれを表示
+            return view('tasks.show', [
+                'task' => $task,
+                'user_id' => $user_id,
+            ]);
+        }
+        
+        // トップページへリダイレクトさせる
+        return redirect('/');
     }
 
     /**
@@ -112,11 +116,18 @@ class TasksController extends Controller
         
         $user_id = \Auth::user()->id;
         
-        // メッセージ編集ビューでそれを表示
-        return view('tasks.edit', [
-            'task' => $task,
-            'user_id' => $user_id,
-        ]);
+        //ログインユーザーの場合
+        if ($user_id === $task->user_id) {
+            // メッセージ編集ビューでそれを表示
+            return view('tasks.edit', [
+                'task' => $task,
+                'user_id' => $user_id,
+            ]);
+        }
+        
+        // トップページへリダイレクトさせる
+        return redirect('/');
+        
     }
 
     /**

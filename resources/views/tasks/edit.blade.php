@@ -24,7 +24,5 @@
             {!! Form::close() !!}
         </div>
     </div>
-@else
-<h1>他人のタスクの編集はできません。</h1>
 @endif
 @endsection
