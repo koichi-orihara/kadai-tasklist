@@ -88,9 +88,12 @@ class TasksController extends Controller
         // idの値でメッセージを検索して取得
         $task = Task::find($id);
         
+        $user_id = \Auth::user()->id;
+        
         // メッセージ詳細ビューでそれを表示
         return view('tasks.show', [
             'task' => $task,
+            'user_id' => $user_id,
         ]);
     }
 
@@ -107,9 +110,12 @@ class TasksController extends Controller
         // idの値でメッセージを検索して取得
         $task = Task::find($id);
         
+        $user_id = \Auth::user()->id;
+        
         // メッセージ編集ビューでそれを表示
         return view('tasks.edit', [
             'task' => $task,
+            'user_id' => $user_id,
         ]);
     }
 
@@ -158,7 +164,9 @@ class TasksController extends Controller
         $task = Task::find($id);
         
         // メッセージを削除
-        $task->delete();
+        if (\Auth::id() === $task->user_id) {
+            $task->delete();
+        }
         
         // トップページへリダイレクトさせる
         return redirect('/');

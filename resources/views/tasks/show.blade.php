@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@if ($user_id == $task->user_id)
     <h1>id = {{ $task->id }}タスクの詳細ページ</h1>
     
     <div class="row">
@@ -32,4 +32,7 @@
 
         </div>
     </div>
+@else
+<h1>他人のタスクの詳細は閲覧できません。</h1>
+@endif
 @endsection

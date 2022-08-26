@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($user_id == $task->user_id)
 
     <h1>タスクの追加ページ</h1>
     
@@ -23,4 +24,7 @@
             {!! Form::close() !!}
         </div>
     </div>
+@else
+<h1>他人のタスクの編集はできません。</h1>
+@endif
 @endsection

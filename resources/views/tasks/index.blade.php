@@ -5,7 +5,6 @@
         {{-- タスク一覧 --}}
         @include('users.users')
     @else
-        xbckjabsdjkcb
         @include('welcome')
     @endif
     
